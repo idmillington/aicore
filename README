@@ -1,0 +1,104 @@
+The Artificial Intelligence for Games system.
+
+Copyright (c) Ian Millington 2003-2006. All Rights Reserved.
+
+This software is distributed under licence. Use of this software
+implies agreement with all terms and conditions of the accompanying
+software licence.
+
+This code also contains portions of the AI Core engine.
+
+Copyright (c) Icosagon Limited 2003-2007. All Rights Reserved.
+
+Please see accompanying LICENSE file.
+
+
+
+Installation
+============
+
+The code can be extracted to any directory.
+
+
+Platform Compatibility
+======================
+
+The software has been designed for platform indepedence as much as
+possible. The only file that may need altering for your platform is
+./src/timing.cpp which currently wraps the windows multimedia timer.
+
+
+Building
+========
+
+Building with Scons
+-------------------
+
+The code can be built using SCONS, available from
+http://www.scons.org/. Simply cd (change directory) into the build 
+directory and type scons.
+
+> cd build
+> scons
+
+To remove intermediate files after building (but leaving the library
+and demos):
+
+> scons -c ../src
+
+
+Building with Microsoft Visual Studio 8 Professional
+----------------------------------------------------
+
+Solution and project files are included for use with Microsoft visual
+studio 8 professional. They may also work with Express edition, but
+I've not tested that.
+
+
+Documentation
+-------------
+
+To build the documentation (see below) you must have doxygen
+installed (it is available from http://www.stack.nl/~dimitri/doxygen/
+Simply cd into the ./doc/build/doxygen directory, then type:
+
+> doxygen aicore.config
+
+to build the documentation.
+
+
+Layout
+======
+
+The build process creates a statically linked library in ./lib which
+can be used with the include headers in ./include. The demo programs
+are built and placed in the ./bin directory.
+
+Source code is contained in the ./src directory, and documentation
+is in the ./doc directory, in particular the reference documentation
+is in the ./doc/ref directory.
+
+
+Documentation
+=============
+
+The source code is heavily documented, and the contents correspond to
+the discussion in the "Artificial Intelligence for Games" book.
+
+It is possible to create 'doxygen' documentation with the tags in the
+source code files, and a configuration for building the documentation
+is provided in the ./doc/build/doxygen directory. The doxygen
+configuration supplied provides only html output, since other output
+formats depend on how your machine is configured.
+
+This is not currently targeted from the scons configuration, because
+scons suport for doxygen depends on where doxygen is installed on your
+machine.
+
+
+Demos
+=====
+
+To run the demos you will require OpenGL and GLUT installed on your
+machine, and the relevant DLLs or shared objects on the path.
+
