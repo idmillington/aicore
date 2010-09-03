@@ -11,6 +11,8 @@
  */
 #include <aicore/aicore.h>
 
+#include <stdlib.h>
+
 namespace aicore
 {
 

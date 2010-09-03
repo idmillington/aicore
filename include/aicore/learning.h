@@ -171,7 +171,7 @@ namespace aicore
         /**
          * Creates a new problem with the given data.
          */
-        ArrayBasedLearningProblem::ArrayBasedLearningProblem(
+        ArrayBasedLearningProblem(
             unsigned stateCount,
             unsigned actionsPerState,
             unsigned *destination,
