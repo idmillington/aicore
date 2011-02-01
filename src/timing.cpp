@@ -16,6 +16,8 @@
 // Import the high performance timer (c. 4ms).
 #include <windows.h>
 #include <mmsystem.h>
+#elif __MACH__
+#include <mach/mach_time.h>  
 #else
 #include <time.h>
 #include <stdint.h>
@@ -44,6 +46,12 @@ namespace aicore
         {
             return unsigned(timeGetTime());
         }
+#elif __MACH__
+        uint64_t t = mach_absolute_time();
+        mach_timebase_info_data_t info = {0,0};
+        mach_timebase_info(&info);
+        uint64_t timenano = t * (info.numer / info.denom);
+        return timenano/1000000;
 #else
         struct timespec cur;
         clock_gettime(CLOCK_REALTIME, &cur);
