@@ -5,6 +5,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ../lib)
 set(SRC ../src)
 
+find_package(GLU REQUIRED)
 find_package(GLUT REQUIRED)
 IF(APPLE)
    INCLUDE_DIRECTORIES ( /System/Library/Frameworks )
