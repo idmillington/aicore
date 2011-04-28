@@ -12,20 +12,30 @@
 
 #include <aicore/aicore.h>
 
+#ifdef _WIN32
 // Import the high performance timer (c. 4ms).
 #include <windows.h>
 #include <mmsystem.h>
+#elif __MACH__
+#include <mach/mach_time.h>  
+#else
+#include <time.h>
+#include <stdint.h>
+#endif
 
 namespace aicore
 {
 
+#ifdef _WIN32
     // Hold internal timing data for the performance counter.
     static bool qpcFlag;
     static double qpcFrequency;
+#endif
 
     // Internal time and clock access functions
     unsigned systemTime()
     {
+#ifdef _WIN32
         if(qpcFlag)
         {
             static LONGLONG qpcMillisPerTick;
@@ -36,6 +46,17 @@ namespace aicore
         {
             return unsigned(timeGetTime());
         }
+#elif __MACH__
+        uint64_t t = mach_absolute_time();
+        mach_timebase_info_data_t info = {0,0};
+        mach_timebase_info(&info);
+        uint64_t timenano = t * (info.numer / info.denom);
+        return timenano/1000000;
+#else
+        struct timespec cur;
+        clock_gettime(CLOCK_REALTIME, &cur);
+        return cur.tv_sec*1000 + cur.tv_nsec/1000000;
+#endif
     }
 
     unsigned TimingData::getTime()
@@ -45,9 +66,16 @@ namespace aicore
 
     unsigned long systemClock()
     {
+#ifdef _WIN32
         __asm {
             rdtsc;
         }
+#else
+        volatile uint32_t lo, hi;
+        asm volatile ("rdtsc" : "=a" (lo), "=d" (hi));
+        uint64_t res = ((uint64_t)hi << 32) + lo;
+        return res;
+#endif
     }
 
     unsigned long TimingData::getClock()
@@ -58,6 +86,7 @@ namespace aicore
     // Sets up the timing system and registers the performance timer.
     void initTime()
     {
+#ifdef _WIN32
         LONGLONG time;
 
         qpcFlag = (QueryPerformanceFrequency((LARGE_INTEGER*)&time) > 0);
@@ -65,6 +94,7 @@ namespace aicore
         // Check if we have access to the performance counter at this
         // resolution.
         if (qpcFlag) qpcFrequency = 1000.0 / time;
+#endif
     }
 
 

@@ -168,8 +168,8 @@ namespace aicore
     }
 
     // Explicit template instantiations
-    template RangeMatch<int>;
-    template RangeMatch<real>;
-    template RangeMatch<Vector3>;
+    template class RangeMatch<int>;
+    template class RangeMatch<real>;
+    template class RangeMatch<Vector3>;
 
 }; // end of namespace

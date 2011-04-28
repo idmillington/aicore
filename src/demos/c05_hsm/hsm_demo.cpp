@@ -58,13 +58,35 @@ public:
 /**
  * This class adds a mechanism to output demo actions with text.
  */
-class DemoTransition : public aicore::ConditionalTransition
+class DemoTransition :
+    public aicore::Transition,
+    public aicore::ConditionalTransitionMixin,
+    public aicore::FixedTargetTransitionMixin
 {
 public:
     const char ** text;
     unsigned textCount;
 
     virtual aicore::Action* getActions();
+
+    aicore::StateMachineState * getTargetState()
+    {
+        return aicore::FixedTargetTransitionMixin::getTargetState();
+    }
+
+    bool isTriggered()
+    {
+        printf("Checking for transition %d - ",
+               ((aicore::IntegerMatchCondition*)condition)->target);
+
+        bool result = aicore::ConditionalTransitionMixin::isTriggered();
+        if (result) {
+            printf("Triggers\n");
+        } else {
+            printf("Doesn't trigger\n");
+        }
+        return result;
+    }
 };
 
 /* This is a convenience function that returns a list of actions from
