@@ -98,7 +98,7 @@ namespace aicore
 	class SteeringPipeComponent
 	{
 	protected:
-		friend SteeringPipe;
+		friend class SteeringPipe;
 		SteeringPipe *pipe;
 	};
 

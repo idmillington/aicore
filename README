@@ -55,6 +55,16 @@ studio 8 professional. They may also work with Express edition, but
 I've not tested that.
 
 
+Building with CMake on Linux
+----------------------------
+
+The code can be built on Linux (and possibly on other platforms)
+using CMake:
+
+  cd build
+  cmake .
+  make
+
 Documentation
 -------------
 

@@ -46,6 +46,11 @@
     #include <limits.h>
 #endif
 
+#undef M_PI
+#undef M_PI_2
+#undef M_PI_4
+#undef M_1_PI
+#undef M_2_PI
 
 namespace aicore
 {

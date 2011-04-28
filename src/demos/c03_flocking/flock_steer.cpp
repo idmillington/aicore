@@ -10,6 +10,7 @@
  * software licence.
  */
 #include "flock_steer.h"
+#include <memory.h>
 
 Flock::Flock()
 :
