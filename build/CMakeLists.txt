@@ -39,6 +39,9 @@ add_library(aicore STATIC
   ${SRC}/demos/common/gl/app.cpp
   ${SRC}/demos/common/gl/main.cpp
 )
+IF(UNIX)
+	target_link_libraries(aicore -lrt)
+ENDIF(UNIX)
 
 set(DEMO_DEPS aicore ${GLUT_LIBRARY} ${OPENGL_LIBRARY})
 
