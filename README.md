@@ -1,3 +1,16 @@
+# About This Repository
+
+This repository should now be considered a historical curiosity only.
+
+The original version of this code was developed between 2002-2004 and included free with the book "Artificial Intelligence for Games". Over the intervening years, the code has become a less useful reference. The third edition of the textbook is considerably larger, and this code did not keep up with errata or improvements in the algorithms. I have not use the code in this repository for my consulting work in over a decade.
+
+The third edition of the textbook does not mention this code, but includes considerably expanded and corrected listings in the text in a language neutral format. I would recommend that version.
+
+
+---
+
+# Historical Information
+
 The Artificial Intelligence for Games system.
 
 Copyright (c) Ian Millington 2003-2009. All Rights Reserved.
@@ -35,7 +48,7 @@ Building with Scons
 -------------------
 
 The code can be built using SCONS, available from
-http://www.scons.org/. Simply cd (change directory) into the build 
+http://www.scons.org/. Simply cd (change directory) into the build
 directory and type scons.
 
 > cd build
